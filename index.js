@@ -31,6 +31,20 @@ async function run() {
 
 const carftCollection = client.db('artAndCraftDB').collection('allCraft');
 
+// get api
+app.get('/allcraft',async(req,res)=>{
+const cursor = carftCollection.find();
+const result =await cursor.toArray();
+res.send(result)
+})
+
+
+//creat data/ post  api
+app.post('/allcraft',async(req,res)=>{
+  const craft = req.body;
+  const result = await carftCollection.insertOne(craft);
+  res.json(result)
+})
 
 
     // Send a ping to confirm a successful connection
