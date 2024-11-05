@@ -54,6 +54,34 @@ app.post('/allcraft',async(req,res)=>{
   res.json(result)
 })
 
+//update  api
+app.patch('/allcraft/:id',async(req,res)=>{
+  const id = req.params.id;
+  const filter = {_id : new ObjectId(id)}
+  // console.log(filter)
+  const options = { upsert: true };
+  const updateCraft = req.body;
+
+  const craft ={
+    $set:{
+      username : updateCraft.username,
+      email : updateCraft.email,
+      price:updateCraft.price,
+      shortDescription:updateCraft.shortDescription,
+      image:updateCraft.image,
+      item_name:updateCraft.item_name,
+      subcategory_name:updateCraft.subcategory_name,
+      rating:updateCraft.rating,
+      customization:updateCraft.customization,
+      processingtime:updateCraft.processingtime,
+      stockstatus:updateCraft.stockstatus
+    }
+  }
+const result = await  carftCollection.updateOne(filter,craft,options);
+res.send(result)
+
+})
+
 
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
