@@ -46,6 +46,14 @@ app.get('/allcraft/:id',async(req,res)=>{
   res.send(result);
 })
 
+//myArt and craft get rout
+app.get('/mycraft/:email',async(req,res)=>{
+const email = req.params.email;
+const query = { email: email };
+const result =await carftCollection.find(query).toArray();
+res.send(result)
+})
+
 
 //creat data/ post  api
 app.post('/allcraft',async(req,res)=>{
