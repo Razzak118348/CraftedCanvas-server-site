@@ -8,7 +8,7 @@ const port = process.env.PORT || 5000;
 
 // middleware
 app.use(cors({
-  origin: "https://craftedcanvas10.web.app" // or "*" for all domains (less secure)
+  origin: "https://craftedcanvas10.web.app"
 }));
 app.use(express.json())
 
